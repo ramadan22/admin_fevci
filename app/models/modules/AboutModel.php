@@ -10,6 +10,7 @@ class AboutModel extends Model
 
     protected $fillable = [
         'id_aboutus',
+        'title_aboutus',
         'content_aboutus',
         'delete_status'
     ];

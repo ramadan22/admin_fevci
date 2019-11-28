@@ -39,7 +39,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link active">
+              <a href="{{ url('') }}" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Dashboard Page</p>
               </a>
@@ -88,7 +88,7 @@
                         // echo "</pre>";
                       @endphp
                       <li class="nav-item">
-                        <a href="pages/layout/top-nav.html" class="nav-link">
+                        <a href="{{ url('') }}/{{ $dataMenu['name_modul'] }}/{{ $dataSubMenu['name_modul'] }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>{{ @$dataSubMenu['name_sub_menu'] }}</p>
                         </a>

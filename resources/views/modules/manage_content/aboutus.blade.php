@@ -38,9 +38,13 @@
                         </div>
                         <div class="card-body">
                         <div class="form-group">
-                            <label for="inputDescription">About Us Content</label>
+                            <label for="inputText">Title</label>
                             <input type="hidden" name="id_aboutus" value="{{ $aboutus['id_aboutus'] }}" />
-                            <textarea id="summernote" rows="4" name="content_aboutus" style="display: none;">{{ $aboutus['content_aboutus'] }}</textarea>
+                            <input type="text" name="title" class="form-control" id="inputText" placeholder="Enter email" value="{{ $aboutus['title_aboutus'] }}" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">About Us Content</label>
+                            <textarea id="summernote" rows="4" name="content_aboutus" style="display: none;" required>{{ $aboutus['content_aboutus'] }}</textarea>
                         </div>
                         </div>
                     </div>

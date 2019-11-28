@@ -20,8 +20,8 @@ class AboutController extends Controller
     }
 
     public function update(Request $request){
-        $add = AboutModel::where("id_aboutus", $request['id_aboutus'])
-        ->update(['content_aboutus' => $request['content_aboutus']]);
+        $update = AboutModel::where("id_aboutus", $request['id_aboutus'])
+        ->update(['content_aboutus' => $request['content_aboutus'], 'title_aboutus' => $request['title']]);
 
         return redirect()->back()->with(array('message' => 'success'));
     }

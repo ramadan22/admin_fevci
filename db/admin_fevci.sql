@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2019 pada 03.54
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.3.1
+-- Host: localhost
+-- Generation Time: Nov 28, 2019 at 05:45 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,28 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `aboutus`
+-- Table structure for table `aboutus`
 --
 
 CREATE TABLE `aboutus` (
   `id_aboutus` int(5) NOT NULL,
+  `title_aboutus` varchar(50) NOT NULL,
   `content_aboutus` longtext NOT NULL,
   `create_date` datetime NOT NULL,
-  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `delete_status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `aboutus`
+-- Dumping data for table `aboutus`
 --
 
-INSERT INTO `aboutus` (`id_aboutus`, `content_aboutus`, `create_date`, `update_date`, `delete_status`) VALUES
-(1, '<p class=\"has-medium-font-size\" style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; font-size: 20px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><strong style=\"margin: 0px; padding: 0px; outline: 0px;\">Ford Everest Club Indonesia Banten</strong></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\">Dari latar belakang berbeda kami bertemu dan dengan memakai kendaraan yang sama, hingga terjalin SILATURAHMI yang kuat, bermakna dan bermanfaat sebagai keluarga besar FORD EVEREST CLUB INDONESIA CHAPTER BANTEN<br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><strong style=\"margin: 0px; padding: 0px; outline: 0px;\">SEKRETARIAT FEVCI BANTEN</strong><br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\">Pabuaran, Karawaci Sub-District, Tangerang City, Banten 15114<br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p class=\"has-medium-font-size\" style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; font-size: 20px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><strong style=\"margin: 0px; padding: 0px; outline: 0px;\">Sejarah Ford Everest Club Indonesia</strong><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\">Ford Everest Club Indonesia (FEvCI) Terbentuk pada 30 April 2015 oleh sekumpulan pengguna dan pencinta Ford Everest di JABOTABEK. FEvCI adalah club Otomotif bersifat KOMUNITAS dan berazazkan KEKELUARGAAN.<br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\">FEvCI sendiri berdiri dengan tujuan : – WADAH SILAHTURAHMI para Owner Ford Eveerest se-INDONESIA. – WADAH KOMUNIKASI para Owner Ford Everest se-INDONESIA. – WADAH BERBAGI INFORMASI pengetahuan &amp; Spare Parts seputar kendaraan Ford Everest. – WADAH BERBAGI Pengalaman Riding dan Berpetualang menikmati Indahnya Alam NUSANTARA INDONESIA. OPEN RECRUITMENTS.!! PLEASE CONTACT PENGURUS CHAPTER &amp; KORWIL di PENGUMUMAN Salam<br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\">#adventuride #everestgetlost</p>', '2019-11-26 00:00:00', '2019-11-26 01:51:47', '0');
+INSERT INTO `aboutus` (`id_aboutus`, `title_aboutus`, `content_aboutus`, `create_date`, `update_date`, `delete_status`) VALUES
+(1, 'Ford Everest Club Indonesia Banten', '<p class=\"has-medium-font-size\" style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; font-size: 20px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><span style=\"font-size: 1rem;\">Dari latar belakang berbeda kami bertemu dan dengan memakai kendaraan yang sama, hingga terjalin SILATURAHMI yang kuat, bermakna dan bermanfaat sebagai keluarga besar FORD EVEREST CLUB INDONESIA CHAPTER BANTEN</span><br></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><strong style=\"margin: 0px; padding: 0px; outline: 0px;\">SEKRETARIAT FEVCI BANTEN</strong><br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\">Pabuaran, Karawaci Sub-District, Tangerang City, Banten 15114<br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"></p><p class=\"has-medium-font-size\" style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; font-size: 20px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\"><strong style=\"margin: 0px; padding: 0px; outline: 0px;\">Sejarah Ford Everest Club Indonesia</strong><br style=\"margin: 0px; padding: 0px; outline: 0px;\"></p><p style=\"margin-right: 0px; margin-bottom: 16px; margin-left: 0px; padding: 0px; outline: 0px; overflow-wrap: break-word; color: rgb(142, 157, 174); font-family: &quot;Open Sans&quot;, sans-serif;\">Ford Everest Club Indonesia (FEvCI) Terbentuk pada 30 April 2015 oleh sekumpulan pengguna dan pencinta Ford Everest di JABOTABEK. FEvCI adalah club Otomotif bersifat KOMUNITAS dan berazazkan KEKELUARGAAN.<br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\">FEvCI sendiri berdiri dengan tujuan : – WADAH SILAHTURAHMI para Owner Ford Eveerest se-INDONESIA. – WADAH KOMUNIKASI para Owner Ford Everest se-INDONESIA. – WADAH BERBAGI INFORMASI pengetahuan &amp; Spare Parts seputar kendaraan Ford Everest. – WADAH BERBAGI Pengalaman Riding dan Berpetualang menikmati Indahnya Alam NUSANTARA INDONESIA. OPEN RECRUITMENTS.!! PLEASE CONTACT PENGURUS CHAPTER &amp; KORWIL di PENGUMUMAN Salam<br style=\"margin: 0px; padding: 0px; outline: 0px;\"><br style=\"margin: 0px; padding: 0px; outline: 0px;\">#adventuride #everestgetlost</p>', '2019-11-26 00:00:00', '2019-11-28 04:37:27', '0');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `app_token`
+-- Table structure for table `app_token`
 --
 
 CREATE TABLE `app_token` (
@@ -57,7 +58,7 @@ CREATE TABLE `app_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `app_token`
+-- Dumping data for table `app_token`
 --
 
 INSERT INTO `app_token` (`id_app_token`, `token`, `create_date`, `delete_status`) VALUES
@@ -66,7 +67,7 @@ INSERT INTO `app_token` (`id_app_token`, `token`, `create_date`, `delete_status`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -74,22 +75,22 @@ CREATE TABLE `menu` (
   `name_menu` varchar(25) NOT NULL,
   `name_modul` varchar(25) NOT NULL,
   `create_date` datetime NOT NULL,
-  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `delete_status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `name_menu`, `name_modul`, `create_date`, `update_date`, `delete_status`) VALUES
-(1, 'Manage Content', '', '2019-11-25 00:00:00', '2019-11-25 03:03:53', '0'),
+(1, 'Manage Content', 'manage-content', '2019-11-25 00:00:00', '2019-11-27 08:04:16', '0'),
 (2, 'Manage Articles', 'articles', '2019-11-26 00:00:00', '2019-11-26 04:45:39', '0');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `privileges`
+-- Table structure for table `privileges`
 --
 
 CREATE TABLE `privileges` (
@@ -100,7 +101,7 @@ CREATE TABLE `privileges` (
   `delete_action` enum('0','1') NOT NULL,
   `created_by` int(5) NOT NULL,
   `create_date` datetime NOT NULL,
-  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `delete_status` enum('0','1') NOT NULL,
   `id_menu` int(5) NOT NULL,
   `id_user` int(5) NOT NULL
@@ -109,7 +110,7 @@ CREATE TABLE `privileges` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sub_menu`
+-- Table structure for table `sub_menu`
 --
 
 CREATE TABLE `sub_menu` (
@@ -117,23 +118,23 @@ CREATE TABLE `sub_menu` (
   `name_sub_menu` varchar(25) NOT NULL,
   `name_modul` varchar(25) NOT NULL,
   `created_date` datetime NOT NULL,
-  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `delete_status` enum('0','1') NOT NULL,
   `id_menu` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `sub_menu`
+-- Dumping data for table `sub_menu`
 --
 
 INSERT INTO `sub_menu` (`id_sub_menu`, `name_sub_menu`, `name_modul`, `created_date`, `update_date`, `delete_status`, `id_menu`) VALUES
-(1, 'About Us', 'aboutus', '2019-11-25 00:00:00', '2019-11-25 03:04:56', '0', 1),
+(1, 'About Us', 'about', '2019-11-25 00:00:00', '2019-11-27 08:05:12', '0', 1),
 (2, 'Contact Us', 'contactus', '2019-11-26 00:00:00', '2019-11-26 02:07:30', '0', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -145,12 +146,12 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `status` enum('0','1') NOT NULL,
   `created_date` datetime NOT NULL,
-  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `delete_status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `user_name`, `address`, `username`, `password`, `email`, `status`, `created_date`, `update_date`, `delete_status`) VALUES
@@ -161,25 +162,25 @@ INSERT INTO `users` (`id_user`, `user_name`, `address`, `username`, `password`, 
 --
 
 --
--- Indeks untuk tabel `aboutus`
+-- Indexes for table `aboutus`
 --
 ALTER TABLE `aboutus`
   ADD PRIMARY KEY (`id_aboutus`);
 
 --
--- Indeks untuk tabel `app_token`
+-- Indexes for table `app_token`
 --
 ALTER TABLE `app_token`
   ADD PRIMARY KEY (`id_app_token`);
 
 --
--- Indeks untuk tabel `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `privileges`
+-- Indexes for table `privileges`
 --
 ALTER TABLE `privileges`
   ADD PRIMARY KEY (`id_privileges`),
@@ -187,71 +188,71 @@ ALTER TABLE `privileges`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `sub_menu`
+-- Indexes for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
   ADD PRIMARY KEY (`id_sub_menu`),
   ADD KEY `id_menu` (`id_menu`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `aboutus`
+-- AUTO_INCREMENT for table `aboutus`
 --
 ALTER TABLE `aboutus`
   MODIFY `id_aboutus` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `app_token`
+-- AUTO_INCREMENT for table `app_token`
 --
 ALTER TABLE `app_token`
   MODIFY `id_app_token` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id_menu` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `privileges`
+-- AUTO_INCREMENT for table `privileges`
 --
 ALTER TABLE `privileges`
   MODIFY `id_privileges` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `sub_menu`
+-- AUTO_INCREMENT for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
   MODIFY `id_sub_menu` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `privileges`
+-- Constraints for table `privileges`
 --
 ALTER TABLE `privileges`
   ADD CONSTRAINT `privileges_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `privileges_ibfk_2` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`);
 
 --
--- Ketidakleluasaan untuk tabel `sub_menu`
+-- Constraints for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
   ADD CONSTRAINT `sub_menu_ibfk_1` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`);

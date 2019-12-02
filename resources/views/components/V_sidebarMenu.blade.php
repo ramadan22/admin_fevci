@@ -29,8 +29,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link active">
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -62,8 +62,9 @@
           @foreach($menu as $dataMenu)
             @if($dataMenu['sub_menu'] == "")
               <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
+                <a href="{{ url('') }}/{{ $dataMenu['name_modul'] }}" class="nav-link">
                   {{-- <i class="nav-icon fas fa-th"></i> --}}
+                  <i class="nav-icon fas fa-file"></i>
                   <p>
                     {{ @$dataMenu['name_menu'] }}
                     {{-- <span class="right badge badge-danger">New</span> --}}
@@ -74,6 +75,7 @@
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   {{-- <i class="nav-icon fas fa-copy"></i> --}}
+                  <i class="nav-icon fas fa-file"></i>
                   <p>
                     {{ @$dataMenu['name_menu'] }}
                     <i class="fas fa-angle-left right"></i>

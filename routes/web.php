@@ -18,5 +18,10 @@
 Route::get('', 'C_dashboard@index');
 
 // modules
-Route::get('manage-content/about', 'modules\AboutController@index');
-Route::post('manage-content/about/update', 'modules\AboutController@update');
+    // Manage-content
+    Route::get('manage-content/about', 'modules\AboutController@index');
+    Route::post('manage-content/about/update', 'modules\AboutController@update');
+
+    // Manage-article
+    Route::get('manage-articles', 'modules\ArticleController@index');
+    Route::post('manage-articles/add', 'modules\ArticleController@add');

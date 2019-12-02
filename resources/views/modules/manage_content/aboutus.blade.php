@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="inputText">Title</label>
                             <input type="hidden" name="id_aboutus" value="{{ $aboutus['id_aboutus'] }}" />
-                            <input type="text" name="title" class="form-control" id="inputText" placeholder="Enter email" value="{{ $aboutus['title_aboutus'] }}" required />
+                            <input type="text" name="title" class="form-control" id="inputText" placeholder="Enter title about us" value="{{ $aboutus['title_aboutus'] }}" required />
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">About Us Content</label>

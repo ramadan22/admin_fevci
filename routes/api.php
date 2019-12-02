@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('about', 'api\about\AboutController@index');
+Route::get('article', 'api\article\ArticleController@index');

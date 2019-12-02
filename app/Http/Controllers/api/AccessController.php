@@ -13,13 +13,10 @@ class AccessController extends Controller
         ->where('token', $token)
         ->first());
 
-        // echo "<pre>";
-        //     print_r($data);die();
-
         if($data == ""){
-            $json['STATUS_CODE'] = "401"; 
-            $json['MESSAGE'] = "Authentication is required and has failed";
-            $json['DATA'] = array();
+            $json['STATUS_CODE']    = "401"; 
+            $json['MESSAGE']        = "Authentication is required and has failed";
+            $json['DATA']           = array();
 
             echo json_encode($json);
 

@@ -13,9 +13,6 @@ class AboutController extends Controller
         ->where("delete_status", "0")
         ->first();
 
-        // echo "<pre>";
-            // print_r($data['aboutus']);die();
-
         return view("modules/manage_content/aboutus", $data);
     }
 

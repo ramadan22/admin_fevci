@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\api\AccessController;
 use App\models\modules\ArticleModel;
+use Config;
 
 class ArticleController extends Controller
 {
@@ -31,7 +32,11 @@ class ArticleController extends Controller
             $json['MESSAGE']            = "Get Data Articles";
             foreach($data as $row){
                 $json['DATA'][$i]['Title']      = $row['title_article'];
-                $json['DATA'][$i]['Image']      = $row['image_article'];
+                if($row['image_article'] != ""){
+                    $json['DATA'][$i]['Image']  = Config::get("constants.urlAssetsImages")."articles/".$row['image_article'];
+                } else {
+                    $json['DATA'][$i]['Image']  = "";
+                }
                 $json['DATA'][$i]['Content']    = $row['content_article'];
                 $json['DATA'][$i]['created']    = $row['created_date'];
 

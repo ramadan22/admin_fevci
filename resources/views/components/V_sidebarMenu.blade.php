@@ -64,7 +64,7 @@
               <li class="nav-item">
                 <a href="{{ url('') }}/{{ $dataMenu['name_modul'] }}" class="nav-link">
                   {{-- <i class="nav-icon fas fa-th"></i> --}}
-                  <i class="nav-icon fas fa-file"></i>
+                  <i class="nav-icon {{ ($dataMenu['icon'] != '' ) ? $dataMenu['icon'] : '' }}"></i>
                   <p>
                     {{ @$dataMenu['name_menu'] }}
                     {{-- <span class="right badge badge-danger">New</span> --}}

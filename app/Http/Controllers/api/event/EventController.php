@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\api\article;
+namespace App\Http\Controllers\api\event;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\api\AccessController;
-use App\models\modules\ArticleModel;
+use App\models\modules\EventModel;
 use Config;
 
-class ArticleController extends Controller
+class EventController extends Controller
 {
     public function __construct(Request $request){
         $data               = $request->header();
         $AccessController   = new AccessController;
 
         return $AccessController->access($data['apptoken'][0]);
-	}
-
+    }
+    
     public function index(Request $request){
-        $data = ArticleModel::select('*')
+        $data = EventModel::select('*')
         ->where("delete_status", "0")
         ->get();
 
@@ -26,15 +26,15 @@ class ArticleController extends Controller
             $i = 0;
 
             $json['STATUS_CODE'] = "200"; 
-            $json['MESSAGE']     = "Get Data Articles";
+            $json['MESSAGE']     = "Get Data Event";
             
             foreach($data as $row){
                 // image directory
-                $imageDirect                 = Config::get("constants.urlAssetsImages")."articles/".@$row['image_article'];
+                $imageDirect                 = Config::get("constants.urlAssetsImages")."event/".@$row['image_event'];
 
-                $json['DATA'][$i]['Title']   = $row['title_article'];
-                $json['DATA'][$i]['Image']   = ($row['image_article'] != "") ? ($imageDirect) : ("");
-                $json['DATA'][$i]['Content'] = $row['content_article'];
+                $json['DATA'][$i]['Title']   = $row['title_event'];
+                $json['DATA'][$i]['Image']   = ($row['image_event'] != "") ? ($imageDirect) : ("");
+                $json['DATA'][$i]['Content'] = $row['content_event'];
                 $json['DATA'][$i]['created'] = $row['created_date'];
 
                 $i++;

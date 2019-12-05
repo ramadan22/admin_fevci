@@ -16,5 +16,13 @@ class VerifyCsrfToken extends Middleware
         '/manage-articles/add',
         '/manage-articles/form-edit',
         '/manage-articles/update',
+
+        '/manage-event/add',
+        '/manage-event/form-edit',
+        '/manage-event/update',
+
+        '/manage-info/add',
+        '/manage-info/form-edit',
+        '/manage-info/update',
     ];
 }

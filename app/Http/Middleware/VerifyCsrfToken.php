@@ -13,6 +13,10 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/manage-content/about/update',
+
+        '/manage-content/banner-header/form-edit',
+        '/manage-content/banner-header/update',
+
         '/manage-articles/add',
         '/manage-articles/form-edit',
         '/manage-articles/update',
@@ -24,5 +28,9 @@ class VerifyCsrfToken extends Middleware
         '/manage-info/add',
         '/manage-info/form-edit',
         '/manage-info/update',
+
+        '/manage-galery/add',
+        '/manage-galery/form-edit',
+        '/manage-galery/update',
     ];
 }

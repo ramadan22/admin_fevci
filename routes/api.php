@@ -28,3 +28,9 @@ Route::get('event', 'api\event\EventController@index');
 
 // Manage-event
 Route::get('info', 'api\info\InfoController@index');
+
+// Manage-event
+Route::get('galery', 'api\galery\GaleryController@index');
+
+// Manage-event
+Route::get('banner-header', 'api\banner_header\BannerHeaderController@index');

@@ -55,3 +55,6 @@ Route::get('', 'C_dashboard@index');
     Route::post('manage-galery/form-edit', 'modules\GaleryController@formEdit');
     Route::post('manage-galery/update', 'modules\GaleryController@update');
     Route::get('manage-galery/delete', 'modules\GaleryController@delete');
+
+    // Manage-register
+    Route::get('manage-register', 'modules\RegisterController@index');

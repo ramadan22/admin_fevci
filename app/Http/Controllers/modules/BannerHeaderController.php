@@ -22,13 +22,9 @@ class BannerHeaderController extends Controller
             $offset = ($page*$limit)-$limit;
         }
 
-        $data['data'] = BannerHeaderModel::select('*')
-        ->orderBy('id_banner_header', 'desc')
-        ->limit($limit)
-        ->offset($offset)
-        ->where("delete_status", "0")
-        ->where("status", "1")
-        ->get();
+        $data['data2'] = $this->getDataDefault();
+
+        $data['data'] = $this->getData("", $limit, $offset);
 
         $data['limit'] = $limit;
 
@@ -62,10 +58,41 @@ class BannerHeaderController extends Controller
         $data = BannerHeaderModel::where("id_banner_header", $request['id_banner_header'])
         ->update(["use_default" => $request['use_default']]);
 
-        return $request['use_default'];
+        if($request['use_default'] == "1"){
+            return json_encode($this->getDataDefault());
+        } else {
+            return json_encode($this->getData("","",""));
+        }
 
-        Session::flash('note', 'Success update data banner header change use default image'); 
-        return redirect()->back()->with(array('message' => '1'));
+        // Session::flash('note', 'Success update data banner header change use default image'); 
+        // return redirect()->back()->with(array('message' => '1'));
+    }
+
+    public function getData($id, $limit, $offset){
+        $data = BannerHeaderModel::select('*')
+        ->orderBy('id_banner_header', 'desc')
+        ->where("delete_status", "0")
+        ->where("status", "0");
+
+        if($id != ""){
+            $data->where('id_banner_header', $id);
+        }
+
+        if($limit != "" && $offset != ""){
+            $data->limit($limit)->offset($offset);
+        }
+
+        return $data->get();
+    }
+
+    public function getDataDefault(){
+        $defaultData = BannerHeaderModel::select('*')
+        ->orderBy('id_banner_header', 'desc')
+        ->where("delete_status", "0")
+        ->where("status", "1")
+        ->get();
+
+        return $defaultData;
     }
 
     function uploadImage($file, $removeFile){

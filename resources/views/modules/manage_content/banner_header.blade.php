@@ -43,6 +43,79 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Image</th>
+                    {{-- <th>Use Default Image Banner</th> --}}
+                    {{-- <th>Key Name</th> --}}
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    @if(count($data2)>0)
+                        @php $no = 1; @endphp
+                        @foreach($data2 as $row)
+                            <tr>
+                                <td>{{ $no }}.</td>
+                                <td>{{ $row['title_banner_header'] }}</td>
+                                <td>{{ $row['description_banner_header'] }}</td>
+                                <td>
+                                    <img src="{{ Config::get('constants.urlAssetsImages') }}{{ $folderImage }}/{{ $row['image_banner_header'] }}" style="width: 100px;" />
+                                </td>
+                                {{-- <td valign="center" style="width: 210px;">
+                                    <div class="custom-control custom-switch text-center">
+                                    <input type="checkbox" class="custom-control-input" name="use_default" id="customSwitch3" value="{{ $row['id_banner_header'] }}" {{ $useDefault = ($row['use_default'] == 1) ? "checked" : "" }}>
+                                    <label class="custom-control-label" for="customSwitch3"></label>
+                                    </div>
+                                </td> --}}
+                                {{-- <td></td> --}}
+                                <td class="project-actions text-center" style="width: 160px;">
+                                    <a class="btn btn-info btn-sm form-edit" id="{{ $row['id_banner_header'] }}" href="#">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    {{-- <a class="btn btn-danger btn-sm" href="{{ url($module.'/delete?id=') }}{{ $row['id_banner_header'] }}">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Delete
+                                    </a> --}}
+                                </td>
+                            </tr>
+                            @php $no++ @endphp
+                        @endforeach
+                    @endif
+                </tbody>
+            </table>
+            </div>
+            <div class="card-footer hide-add-data clearfix">
+                @php
+                    $totalPage = ceil($totalData/$limit);
+                @endphp
+                @if($totalPage>1)
+                    <ul class="pagination pagination-sm m-0 float-right">
+                        <li class="page-item"><a class="page-link" href="#">«</a></li>
+                        @for($b=1;$b<=$totalPage;$b++)
+                            <li class="page-item {{ (!empty($_GET['page']) ? (($_GET['page'] == $b) ? "active" : '') : '') }}"><a class="page-link" href="{{ url($module) }}/?page={{ $b }}">{{ $b }}</a></li>
+                        @endfor
+                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                    </ul>
+                @endif
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+            <h3 class="card-title">Data Banner Headers</h3>
+            <button type="submit" class="btn btn-danger add-data-form-cancel" style="display: none; float: right; padding-top: 1px; padding-bottom: 1px;">
+                <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel
+            </button>
+            </div>
+            <div class="card-body hide-add-data">
+            <table class="table table-bordered">
+                <thead>                  
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Image</th>
                     <th>Use Default Image Banner</th>
                     {{-- <th>Key Name</th> --}}
                     <th></th>
@@ -57,7 +130,8 @@
                                 <td>{{ $row['title_banner_header'] }}</td>
                                 <td>{{ $row['description_banner_header'] }}</td>
                                 <td>
-                                    <img src="{{ Config::get('constants.urlAssetsImages') }}{{ $folderImage }}/{{ $row['image_banner_header'] }}" style="width: 100px;" />
+                                    @php $conditionDefaultImage = ($row['use_default'] == '1') ? Config::get('constants.urlAssetsImages').$folderImage."/".$data2[0]['image_banner_header'] : Config::get('constants.urlAssetsImages').$folderImage."/".$row['image_banner_header']; @endphp
+                                    <img src="{{ $conditionDefaultImage }}" style="width: 100px;" class="image-change{{ $row['id_banner_header'] }}" />
                                 </td>
                                 <td valign="center" style="width: 210px;">
                                     <div class="custom-control custom-switch text-center">
@@ -100,6 +174,7 @@
                 @endif
             </div>
         </div>
+
         <form action="{{ url($module.'/add') }}" method="POST" enctype="multipart/form-data" class="form-add-data" style="display: none;">
             {{ csrf_field() }}
             <div class="row">
@@ -164,12 +239,14 @@
                 $.ajax({
                     url: "{{ url('manage-content/banner-header/update-use-default') }}",
                     type: "GET",
-                    // dataType: "JSON",
+                    dataType: "JSON",
                     data: "id_banner_header="+id+"&use_default="+useDefault,
                     beforeSend: function(){
 
                     },
                     success: function(res){
+                        $(".image-change"+id).attr("src", "{{ Config::get('constants.urlAssetsImages').$folderImage.'/' }}"+res[0]['image_banner_header']);
+
                         $.amaran({
                             'message'           : 'Default image changed',
                             'cssanimationIn'    : 'tada',

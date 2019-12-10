@@ -32,5 +32,7 @@ class VerifyCsrfToken extends Middleware
         '/manage-galery/add',
         '/manage-galery/form-edit',
         '/manage-galery/update',
+
+        '/register'
     ];
 }

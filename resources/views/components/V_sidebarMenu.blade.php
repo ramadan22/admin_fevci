@@ -1,8 +1,4 @@
-@php
-  $menu = menuAndPrivileges();
-  // echo "<pre>";
-    // print_r($menu);die();
-@endphp
+@php $menu = menuAndPrivileges(); @endphp
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
@@ -29,8 +25,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{ (empty(Request::segment(1))) ? "menu-open" : "" }}">
+          <a href="#" class="nav-link {{ (empty(Request::segment(1))) ? "active" : "" }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -39,7 +35,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ url('') }}" class="nav-link active">
+              <a href="{{ url('') }}" class="nav-link {{ (empty(Request::segment(1))) ? "active" : "" }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Dashboard Page</p>
               </a>
@@ -62,7 +58,7 @@
           @foreach($menu as $dataMenu)
             @if($dataMenu['sub_menu'] == "")
               <li class="nav-item">
-                <a href="{{ url('') }}/{{ $dataMenu['name_modul'] }}" class="nav-link">
+                <a href="{{ url('') }}/{{ $dataMenu['name_modul'] }}" class="nav-link {{ (!empty(Request::segment(1))) ? ((Request::segment(1) == $dataMenu['name_modul']) ? "active" : "") : "" }}">
                   {{-- <i class="nav-icon fas fa-th"></i> --}}
                   <i class="nav-icon {{ ($dataMenu['icon'] != '' ) ? $dataMenu['icon'] : '' }}"></i>
                   <p>
@@ -72,25 +68,18 @@
                 </a>
               </li>
             @else
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  {{-- <i class="nav-icon fas fa-copy"></i> --}}
+              <li class="nav-item has-treeview {{ (!empty(Request::segment(1))) ? ((Request::segment(1) == $dataMenu['name_modul']) ? "menu-open" : "") : "" }}">
+                <a href="#" class="nav-link {{ (!empty(Request::segment(1))) ? ((Request::segment(1) == $dataMenu['name_modul']) ? "active" : "") : "" }}">
                   <i class="nav-icon fas fa-file"></i>
                   <p>
                     {{ @$dataMenu['name_menu'] }}
                     <i class="fas fa-angle-left right"></i>
-                    {{-- <span class="badge badge-info right">6</span> --}}
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                     @foreach($dataMenu['sub_menu'] as $dataSubMenu)
-                      @php 
-                        // echo "<pre>";
-                          // print_r($dataMenu['sub_menu']);
-                        // echo "</pre>";
-                      @endphp
                       <li class="nav-item">
-                        <a href="{{ url('') }}/{{ $dataMenu['name_modul'] }}/{{ $dataSubMenu['name_modul'] }}" class="nav-link">
+                        <a href="{{ url('') }}/{{ $dataMenu['name_modul'] }}/{{ $dataSubMenu['name_modul'] }}" class="nav-link {{ (!empty(Request::segment(2))) ? ((Request::segment(2) == $dataSubMenu['name_modul']) ? "active" : "") : "" }}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>{{ @$dataSubMenu['name_sub_menu'] }}</p>
                         </a>

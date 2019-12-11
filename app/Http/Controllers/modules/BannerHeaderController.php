@@ -11,6 +11,10 @@ use Image;
 
 class BannerHeaderController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         $limit = 15;
         $offset = 0;

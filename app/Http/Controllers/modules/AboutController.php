@@ -8,6 +8,10 @@ use App\models\modules\AboutModel;
 
 class AboutController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         $data['aboutus'] = AboutModel::select("*")
         ->where("delete_status", "0")

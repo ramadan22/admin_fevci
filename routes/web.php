@@ -15,7 +15,13 @@
 //     return view('welcome');
 // });
 
-Route::get('', 'C_dashboard@index');
+Route::get('', 'C_dashboard@index' , function () {  })->middleware('auth');
+
+// login
+// Route::get('login', 'Auth\LoginController@index');
+
+// logout
+Route::get('logout', 'Auth\LoginController@logout');
 
 // modules
     // Manage-content
@@ -58,3 +64,6 @@ Route::get('', 'C_dashboard@index');
 
     // Manage-register
     Route::get('manage-register', 'modules\RegisterController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -19,8 +19,17 @@ class ArticleController extends Controller
 
     public function index(Request $request){
         $data = ArticleModel::select('*')
-        ->where("delete_status", "0")
-        ->get();
+        ->where("delete_status", "0");
+
+        if(!empty($request['OFFSET']) && $request['OFFSET'] != ""){
+            $data->offset($request['OFFSET']);
+        }
+
+        if(!empty($request['LIMIT']) && $request['LIMIT'] != ""){
+            $data->limit($request['LIMIT']);
+        }
+
+        $data = $data->get();
 
         if(count($data) > 0){
             $i = 0;
@@ -35,7 +44,7 @@ class ArticleController extends Controller
                 $json['DATA'][$i]['Title']   = $row['title_article'];
                 $json['DATA'][$i]['Image']   = ($row['image_article'] != "") ? ($imageDirect) : ("");
                 $json['DATA'][$i]['Content'] = $row['content_article'];
-                $json['DATA'][$i]['created'] = $row['created_date'];
+                $json['DATA'][$i]['created'] = $row['created_date']->toDateTimeString();
 
                 $i++;
             }

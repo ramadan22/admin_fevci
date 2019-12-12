@@ -105,7 +105,7 @@ class GaleryController extends Controller
 
         // thumbnail
         $thumbnailPath = base_path('assets/images/galery/image/'.$gen."-".$file->getClientOriginalName());
-        $img = Image::make($thumbnailPath)->crop(150, 100);
+        $img = Image::make($thumbnailPath)->crop(325, 225);
         $img->save($pathImage."/thumbnail/".$gen."-".$file->getClientOriginalName());
 
         return $gen."-".$file->getClientOriginalName();

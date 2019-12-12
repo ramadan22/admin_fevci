@@ -19,8 +19,17 @@ class EventController extends Controller
     
     public function index(Request $request){
         $data = EventModel::select('*')
-        ->where("delete_status", "0")
-        ->get();
+        ->where("delete_status", "0");
+        
+        if(!empty($request['OFFSET']) && $request['OFFSET'] != ""){
+            $data->offset($request['OFFSET']);
+        }
+
+        if(!empty($request['LIMIT']) && $request['LIMIT'] != ""){
+            $data->limit($request['LIMIT']);
+        }
+
+        $data = $data->get();
 
         if(count($data) > 0){
             $i = 0;
@@ -35,7 +44,7 @@ class EventController extends Controller
                 $json['DATA'][$i]['Title']   = $row['title_event'];
                 $json['DATA'][$i]['Image']   = ($row['image_event'] != "") ? ($imageDirect) : ("");
                 $json['DATA'][$i]['Content'] = $row['content_event'];
-                $json['DATA'][$i]['created'] = $row['created_date'];
+                $json['DATA'][$i]['created'] = $row['created_date']->toDateTimeString();
 
                 $i++;
             }

@@ -19,8 +19,17 @@ class GaleryController extends Controller
     
     public function index(Request $request){
         $data = GaleryModel::select('*')
-        ->where("delete_status", "0")
-        ->get();
+        ->where("delete_status", "0");
+        
+        if(!empty($request['OFFSET']) && $request['OFFSET'] != ""){
+            $data->offset($request['OFFSET']);
+        }
+
+        if(!empty($request['LIMIT']) && $request['LIMIT'] != ""){
+            $data->limit($request['LIMIT']);
+        }
+
+        $data = $data->get();
 
         if(count($data) > 0){
             $i = 0;
@@ -37,7 +46,7 @@ class GaleryController extends Controller
                 $json['DATA'][$i]['Alt_image']  = $row['alt_galery'];
                 $json['DATA'][$i]['Image']      = ($row['image_galery'] != "") ? ($imageDirect) : ("");
                 $json['DATA'][$i]['Thumbnail']  = ($row['thumbnail_galery'] != "") ? ($imageDirectThumbnail) : ("");
-                $json['DATA'][$i]['created']    = $row['created_date'];
+                $json['DATA'][$i]['created']    = $row['created_date']->toDateTimeString();
 
                 $i++;
             }

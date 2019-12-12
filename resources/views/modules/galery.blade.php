@@ -231,7 +231,7 @@
 
                         if(res.image_galery != ""){
                             $(".image-upload").empty().append(""+
-                                "<img src='{{ Config::get("constants.urlAssetsImages") }}{{ $folderImage }}/"+res.image_galery+"' width='100' />"
+                                "<img src='{{ Config::get("constants.urlAssetsImages") }}{{ $folderImage }}/image/"+res.image_galery+"' width='100' />"
                             );
                             $(".wrap-image-upload").show();
                         }

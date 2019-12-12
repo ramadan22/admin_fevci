@@ -1,6 +1,7 @@
 <?php
     use App\models\M_menu as menu_model;
     use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\Auth;
 
 	if (!function_exists('menuAndPrivileges')) {
 		function menuAndPrivileges(){
@@ -39,4 +40,12 @@
 
             return $menu;
         }
-	}
+    }
+    
+    if (!function_exists('getUser')) {
+        function getUser(){
+            $user = Auth::user();
+
+            return json_decode($user, true);
+        }
+    }

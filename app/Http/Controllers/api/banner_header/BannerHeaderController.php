@@ -19,6 +19,7 @@ class BannerHeaderController extends Controller
     
     public function index(Request $request){
         $data = BannerHeaderModel::select('*')
+        ->where("key_name", $request['KEY_NAME'])
         ->where("delete_status", "0")
         ->where("status", "0")
         ->get();
@@ -36,8 +37,9 @@ class BannerHeaderController extends Controller
 
                 $json['DATA'][$i]['Title']        = $row['title_banner_header'];
                 $json['DATA'][$i]['Description']  = $row['description_banner_header'];
+                $json['DATA'][$i]['KeyName']      = $row['key_name'];
                 $json['DATA'][$i]['Image']        = ($row['use_default'] != "1") ? ($imageDirect) : ($getDataDefault['DATA'][0]['Image']);
-                $json['DATA'][$i]['created']      = $row['created_date'];
+                $json['DATA'][$i]['created']      = $row['created_date']->toDateTimeString();
 
                 $i++;
             }
@@ -69,7 +71,7 @@ class BannerHeaderController extends Controller
                 $json['DATA'][$i]['Title']        = $row['title_banner_header'];
                 $json['DATA'][$i]['Description']  = $row['description_banner_header'];
                 $json['DATA'][$i]['Image']        = ($row['use_default'] != "1") ? ($imageDirect) : ("");
-                $json['DATA'][$i]['created']      = $row['created_date'];
+                $json['DATA'][$i]['created']      = $row['created_date']->toDateTimeString();
 
                 $i++;
             }

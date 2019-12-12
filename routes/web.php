@@ -64,6 +64,8 @@ Route::get('logout', 'Auth\LoginController@logout');
 
     // Manage-register
     Route::get('manage-register', 'modules\RegisterController@index');
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Config
+Route::get('config', 'config\ConfigController@index');
+
+Auth::routes();

@@ -21,19 +21,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('about', 'api\about\AboutController@index');
 
 // Manage-article
-Route::get('article', 'api\article\ArticleController@index');
+Route::post('article', 'api\article\ArticleController@index');
 
 // Manage-event
-Route::get('event', 'api\event\EventController@index');
+Route::post('event', 'api\event\EventController@index');
 
 // Manage-info
-Route::get('info', 'api\info\InfoController@index');
+Route::post('info', 'api\info\InfoController@index');
 
 // Manage-galery
-Route::get('galery', 'api\galery\GaleryController@index');
+Route::post('galery', 'api\galery\GaleryController@index');
 
 // Manage-banner-header
-Route::get('banner-header', 'api\banner_header\BannerHeaderController@index');
+Route::post('banner-header', 'api\banner_header\BannerHeaderController@index');
 Route::get('banner-header/default', 'api\banner_header\BannerHeaderController@default');
 
 // Manage-register

@@ -66,6 +66,7 @@ Route::get('logout', 'Auth\LoginController@logout');
     Route::get('manage-register', 'modules\RegisterController@index');
 
 // Config
-Route::get('config', 'config\ConfigController@index');
+Route::get('configuration', 'config\ConfigController@index');
+Route::post('configuration/update-menu', 'config\ConfigController@updateMenu');
 
 Auth::routes();

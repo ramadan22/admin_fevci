@@ -57,6 +57,7 @@
             </li> --}}
           </ul>
         </li>
+        
         @if(!empty($menu))
           @foreach($menu as $dataMenu)
             @if($dataMenu['sub_menu'] == "")
@@ -73,7 +74,7 @@
             @else
               <li class="nav-item has-treeview {{ (!empty(Request::segment(1))) ? ((Request::segment(1) == $dataMenu['name_modul']) ? "menu-open" : "") : "" }}">
                 <a href="#" class="nav-link {{ (!empty(Request::segment(1))) ? ((Request::segment(1) == $dataMenu['name_modul']) ? "active" : "") : "" }}">
-                  <i class="nav-icon fas fa-file"></i>
+                  <i class="nav-icon {{ ($dataMenu['icon'] != '' ) ? $dataMenu['icon'] : '' }}"></i>
                   <p>
                     {{ @$dataMenu['name_menu'] }}
                     <i class="fas fa-angle-left right"></i>

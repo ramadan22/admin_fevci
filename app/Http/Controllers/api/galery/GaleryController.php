@@ -42,6 +42,7 @@ class GaleryController extends Controller
                 $imageDirect                    = Config::get("constants.urlAssetsImages")."galery/image/".@$row['image_galery'];
                 $imageDirectThumbnail           = Config::get("constants.urlAssetsImages")."galery/thumbnail/".@$row['thumbnail_galery'];
 
+                $json['DATA'][$i]['Id']         = $row['id_galery'];
                 $json['DATA'][$i]['Title']      = $row['title_galery'];
                 $json['DATA'][$i]['Alt_image']  = $row['alt_galery'];
                 $json['DATA'][$i]['Image']      = ($row['image_galery'] != "") ? ($imageDirect) : ("");

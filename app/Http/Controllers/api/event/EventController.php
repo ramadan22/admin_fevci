@@ -29,6 +29,10 @@ class EventController extends Controller
             $data->limit($request['LIMIT']);
         }
 
+        if(!empty($request['ID'])){
+            $data->where("id_event", $request['ID']);
+        }
+
         $data = $data->get();
 
         if(count($data) > 0){
@@ -41,6 +45,7 @@ class EventController extends Controller
                 // image directory
                 $imageDirect                 = Config::get("constants.urlAssetsImages")."event/".@$row['image_event'];
 
+                $json['DATA'][$i]['Id']      = $row['id_event'];
                 $json['DATA'][$i]['Title']   = $row['title_event'];
                 $json['DATA'][$i]['Image']   = ($row['image_event'] != "") ? ($imageDirect) : ("");
                 $json['DATA'][$i]['Content'] = $row['content_event'];

@@ -29,6 +29,10 @@ class ArticleController extends Controller
             $data->limit($request['LIMIT']);
         }
 
+        if(!empty($request['ID'])){
+            $data->where("id_article", $request['ID']);
+        }
+
         $data = $data->get();
 
         if(count($data) > 0){
@@ -41,6 +45,7 @@ class ArticleController extends Controller
                 // image directory
                 $imageDirect                 = Config::get("constants.urlAssetsImages")."articles/".@$row['image_article'];
 
+                $json['DATA'][$i]['Id']      = $row['id_article'];
                 $json['DATA'][$i]['Title']   = $row['title_article'];
                 $json['DATA'][$i]['Image']   = ($row['image_article'] != "") ? ($imageDirect) : ("");
                 $json['DATA'][$i]['Content'] = $row['content_article'];

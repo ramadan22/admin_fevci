@@ -29,6 +29,10 @@ class InfoController extends Controller
             $data->limit($request['LIMIT']);
         }
 
+        if(!empty($request['ID'])){
+            $data->where("id_info", $request['ID']);
+        }
+
         $data = $data->get();
 
         if(count($data) > 0){
@@ -41,6 +45,7 @@ class InfoController extends Controller
                 // image directory
                 $imageDirect                 = Config::get("constants.urlAssetsImages")."info/".@$row['image_info'];
 
+                $json['DATA'][$i]['Id']      = $row['id_info'];
                 $json['DATA'][$i]['Title']   = $row['title_info'];
                 $json['DATA'][$i]['Image']   = ($row['image_info'] != "") ? ($imageDirect) : ("");
                 $json['DATA'][$i]['Content'] = $row['content_info'];

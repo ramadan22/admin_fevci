@@ -35,6 +35,7 @@ class BannerHeaderController extends Controller
                 $imageDirect                      = Config::get("constants.urlAssetsImages")."banner_header/".@$row['image_banner_header'];
                 $getDataDefault                   = json_decode($this->default(), true);
 
+                $json['DATA'][$i]['Id']           = $row['id_banner_header'];
                 $json['DATA'][$i]['Title']        = $row['title_banner_header'];
                 $json['DATA'][$i]['Description']  = $row['description_banner_header'];
                 $json['DATA'][$i]['KeyName']      = $row['key_name'];
@@ -68,7 +69,7 @@ class BannerHeaderController extends Controller
                 // image directory
                 $imageDirect                      = Config::get("constants.urlAssetsImages")."banner_header/".@$row['image_banner_header'];
 
-                $json['DATA'][$i]['Title']        = $row['title_banner_header'];
+                $json['DATA'][$i]['Id']           = $row['id_banner_header'];
                 $json['DATA'][$i]['Description']  = $row['description_banner_header'];
                 $json['DATA'][$i]['Image']        = ($row['use_default'] != "1") ? ($imageDirect) : ("");
                 $json['DATA'][$i]['created']      = $row['created_date']->toDateTimeString();

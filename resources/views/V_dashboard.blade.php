@@ -785,6 +785,24 @@
 </div>
 <!-- ./wrapper -->
 
+<div id="delete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Delete Data</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Are you sure you want to delete this data?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="del" class="btn btn-danger" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- jQuery -->
 <script src="{{ url('') }}/assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

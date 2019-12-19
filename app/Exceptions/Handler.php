@@ -48,6 +48,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // $json['STATUS_CODE']    = "400"; 
+        // $json['MESSAGE']        = "Bad request";
+        // $json['DATA']           = array();
+
+        // echo json_encode($json);
+
+        // die();
         return parent::render($request, $exception);
     }
 }

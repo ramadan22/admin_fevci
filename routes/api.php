@@ -29,6 +29,9 @@ Route::post('event', 'api\event\EventController@index');
 // Manage-info
 Route::post('info', 'api\info\InfoController@index');
 
+// Manage-info
+Route::post('merchandise', 'api\merchandise\MerchandiseController@index');
+
 // Manage-galery
 Route::post('galery', 'api\galery\GaleryController@index');
 

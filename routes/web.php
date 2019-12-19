@@ -62,6 +62,13 @@ Route::get('logout', 'Auth\LoginController@logout');
     Route::post('manage-galery/update', 'modules\GaleryController@update');
     Route::get('manage-galery/delete', 'modules\GaleryController@delete');
 
+    // Manage-merchandise
+    Route::get('manage-merchandise', 'modules\MerchandiseController@index');
+    Route::post('manage-merchandise/add', 'modules\MerchandiseController@add');
+    Route::post('manage-merchandise/form-edit', 'modules\MerchandiseController@formEdit');
+    Route::post('manage-merchandise/update', 'modules\MerchandiseController@update');
+    Route::get('manage-merchandise/delete', 'modules\MerchandiseController@delete');
+
     // Manage-register
     Route::get('manage-register', 'modules\RegisterController@index');
 

@@ -181,7 +181,15 @@
                     @if(!empty($privileges))
                         <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h5 class="m-0">Privileges</h5>
+                            <h5 style="display: inline-block;" class="m-0">Privileges</h5>
+                            <select class="form-control" style="display: inline-block; width: auto; float: right !important;">
+                                @if(!empty($users))
+                                    @foreach($users as $row)
+                                        <option>{{ $row['name'] }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                            <div class="clearfix"></div>
                         </div>
                         <div class="card-body">
                             <table class="table table-hover">

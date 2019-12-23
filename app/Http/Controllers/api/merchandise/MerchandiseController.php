@@ -48,8 +48,8 @@ class MerchandiseController extends Controller
                 $json['DATA'][$i]['Id']          = $row['id_merchandise'];
                 $json['DATA'][$i]['Title']       = $row['name_merchandise'];
                 $json['DATA'][$i]['Image']       = ($row['image_merchandise'] != "") ? ($imageDirect) : ("");
-                $json['DATA'][$i]['Price']       = $row['price_merhcandise'];
-                $json['DATA'][$i]['Description'] = $row['merchandise_description'];
+                $json['DATA'][$i]['Price']       = $row['price_merchandise'];
+                $json['DATA'][$i]['Description'] = $row['description_merchandise'];
                 $json['DATA'][$i]['created']     = $row['created_date']->toDateTimeString();
 
                 $i++;

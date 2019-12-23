@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/configuration';
 
     /**
      * Create a new controller instance.
@@ -36,7 +36,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
 
     /**
@@ -47,11 +47,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'email.unique'      => 'Email has already been taken this is customize error.',
+            'password_confirmation.same' => 'Password Confirmation should match the Password',
+        ];
+
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'password' => 'required|string|min:6',
+            'password_confirmation' => 'required|min:6|same:password',
+        ], $messages);
     }
 
     /**
@@ -65,6 +71,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'remember_token' => "", 
+            'status' => "1",
             'password' => bcrypt($data['password']),
         ]);
     }

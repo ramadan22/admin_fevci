@@ -1,3 +1,7 @@
+@if($errors->any())
+                @php echo "<pre>"; print_r($errors->all()); echo "</pre>"; @endphp
+            @endif
+
 @extends("V_dashboard")
 
 @section('css')
@@ -142,7 +146,8 @@
                     @if(!empty($users))
                         <div class="card">
                         <div class="card-header">
-                            <h5 class="m-0">Users</h5>
+                            <h5 class="m-0" style="display: inline-block;">Users</h5>
+                            <a type="button" href="#" class="btn btn-primary btn-sm" style="float: right;" data-toggle="modal" data-target="#users-modal" id=""><i class="fas fa-plus"></i>&nbsp; Add User</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -164,7 +169,7 @@
                                         <td>{{ $row['email'] }}</td>
                                         <td>{{ ($row['status'] == "0") ? "Super Admin" : "Admin"  }}</td>
                                         <td>
-                                            <a class="btn btn-info btn-sm form-edit" id="1" href="#">
+                                            <a type="button" href="#" class="btn btn-info btn-sm form-edit-menu" data-toggle="modal" data-target="#users-modal" id="">
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
@@ -225,7 +230,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header border-bottom-0">
-                <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Menu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -235,13 +240,51 @@
                 <input type="hidden" class="id-menu" name="id_menu" value="" />
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="email1">Name</label>
+                        <label for="name">Name</label>
                         <input type="text" class="form-control" name="name" placeholder="Enter name" required>
                         <small id="nameHelp" class="form-text text-muted">Update name of menu</small>
                     </div>
                     <div class="form-group">
                         <label for="password1">Icon</label>
                         <select name="icon" class="form-control select2"></select>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="users-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('register') }}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" class="id-menu" name="id" value="" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" value="{{ Request::old('name') }}" placeholder="Enter name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email1">Email Address</label>
+                        <input type="email" class="form-control" name="email" value="{{Request::old('email')}}" placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-confirmation">Confirm Password</label>
+                        <input type="password" class="form-control" name="password_confirmation" placeholder="Enter confirm password" required>
                     </div>
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center">

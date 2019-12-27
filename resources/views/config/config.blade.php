@@ -200,7 +200,9 @@
                             <table class="table table-hover">
                                 @foreach($privileges as $row)
                                 <tr>
-                                    <td style="border: none; padding-left: 0px;" colpsan="3"><b>{{ $row['name_menu'] }}</b></td>
+                                    <td style="border: none; padding-left: 0px;" colspan="4"><b>
+                                        &nbsp;&nbsp;{{ ($row['id_sub_menu'] != "0") ? $row['name_sub_menu'] : $row['name_menu'] }}
+                                    </b></td>
                                 </tr>
                             
                                 <tr>
@@ -211,10 +213,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td style="border: none;"><input type="checkbox" /></td>
-                                    <td style="border: none;"><input type="checkbox" /></td>
-                                    <td style="border: none;"><input type="checkbox" /></td>
-                                    <td style="border: none;"><input type="checkbox" /></td>
+                                    <td style="border: none;"><input type="checkbox" {{ ($row['view_action'] == "1") ? "checked" : "" }} /></td>
+                                    <td style="border: none;"><input type="checkbox" {{ ($row['create_action'] == "1") ? "checked" : "" }} /></td>
+                                    <td style="border: none;"><input type="checkbox" {{ ($row['edit_action'] == "1") ? "checked" : "" }} /></td>
+                                    <td style="border: none;"><input type="checkbox" {{ ($row['delete_action'] == "1") ? "checked" : "" }} /></td>
                                 </tr>
                                 @endforeach
                             </table>

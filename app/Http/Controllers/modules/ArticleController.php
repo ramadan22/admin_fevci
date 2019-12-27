@@ -87,6 +87,8 @@ class ArticleController extends Controller
         $gen = date("Y-m-d H-i-s");
         $gen = str_replace(" ", "", str_replace("-", "", $gen));
 
+        $fileName = str_replace(" ", "-", $file->getClientOriginalName());
+
         if(!empty($removeFile)){
             $fileData = Config::get("constants.pathImage")."articles/".$removeFile;
             if(file_exists($fileData)){
@@ -121,8 +123,8 @@ class ArticleController extends Controller
  
         // upload file
         // $file->move($tujuan_upload,$gen."-".$file->getClientOriginalName());
-        $file->move(base_path('assets/images/articles'),$gen."-".$file->getClientOriginalName());
+        $file->move(base_path('assets/images/articles'),$gen."-".$fileName);
 
-        return $gen."-".$file->getClientOriginalName();
+        return $gen."-".$fileName;
     }
 }

@@ -84,6 +84,8 @@ class EventController extends Controller
         $gen = date("Y-m-d H-i-s");
         $gen = str_replace(" ", "", str_replace("-", "", $gen));
 
+        $fileName = str_replace(" ", "-", $file->getClientOriginalName());
+
         if(!empty($removeFile)){
             $fileData = Config::get("constants.pathImage")."event/".$removeFile;
             if(file_exists($fileData)){
@@ -116,8 +118,8 @@ class EventController extends Controller
  
         // upload file
         // $file->move($tujuan_upload,$gen."-".$file->getClientOriginalName());
-        $file->move(base_path('assets/images/event'),$gen."-".$file->getClientOriginalName());
+        $file->move(base_path('assets/images/event'),$gen."-".$fileName);
 
-        return $gen."-".$file->getClientOriginalName();
+        return $gen."-".$fileName;
     }
 }

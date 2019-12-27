@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CreatePrivilegesController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -68,12 +69,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'remember_token' => "", 
             'status' => "1",
             'password' => bcrypt($data['password']),
         ]);
+
+        $id_user = $user->id;
+
+        $createUser = new CreatePrivilegesController;
+
+        return $createUser->createUserPrivileges($id_user);
+
+        die();
     }
 }

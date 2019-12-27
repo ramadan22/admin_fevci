@@ -10,6 +10,7 @@ use App\models\config\IconModel;
 use App\models\M_menu as menu_model;
 use Config;
 use Session;
+use Auth;
 
 class ConfigController extends Controller
 {
@@ -21,6 +22,7 @@ class ConfigController extends Controller
     }
 
     public function index(){
+        
         $data['menu'] = menu_model::select("*")
         // ->join('sub_menu', 'menu.id_menu', '=', 'sub_menu.id_menu')
         ->where('menu.delete_status', '0')
@@ -33,7 +35,9 @@ class ConfigController extends Controller
 
         $data['privileges'] = PrivilegesModel::select("*")
         ->where('privileges.delete_status', '0')
+        ->where('privileges.id_user', Auth::user()->id)
         ->join('menu', 'menu.id_menu', '=', 'privileges.id_menu')
+        // ->join('sub_menu', 'sub_menu.id_menu', '=', 'menu.id_menu')
         ->get();
 
         $data['icons'] = IconModel::select("*")->get();

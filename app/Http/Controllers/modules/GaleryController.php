@@ -85,6 +85,8 @@ class GaleryController extends Controller
         $gen = date("Y-m-d H-i-s");
         $gen = str_replace(" ", "", str_replace("-", "", $gen));
 
+        $fileName = str_replace(" ", "-", $file->getClientOriginalName());
+
         if(!empty($removeFile)){
             $fileData = Config::get("constants.pathImage")."galery/image/".$removeFile;
             $fileData2 = Config::get("constants.pathImage")."galery/thumbnail/".$removeFile;
@@ -101,13 +103,13 @@ class GaleryController extends Controller
         $pathImage = base_path('assets/images/galery');
  
         // upload file
-        $file->move($pathImage."/image", $gen."-".$file->getClientOriginalName());
+        $file->move($pathImage."/image", $gen."-".$fileName);
 
         // thumbnail
-        $thumbnailPath = base_path('assets/images/galery/image/'.$gen."-".$file->getClientOriginalName());
+        $thumbnailPath = base_path('assets/images/galery/image/'.$gen."-".$fileName);
         $img = Image::make($thumbnailPath)->crop(325, 225);
-        $img->save($pathImage."/thumbnail/".$gen."-".$file->getClientOriginalName());
+        $img->save($pathImage."/thumbnail/".$gen."-".$fileName);
 
-        return $gen."-".$file->getClientOriginalName();
+        return $gen."-".$fileName;
     }
 }

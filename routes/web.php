@@ -75,5 +75,6 @@ Route::get('logout', 'Auth\LoginController@logout');
 // Config
 Route::get('configuration', 'config\ConfigController@index');
 Route::post('configuration/update-menu', 'config\ConfigController@updateMenu');
+Route::get('configuration/create-privileges-user', 'CreatePrivilegesController@index');
 
 Auth::routes();

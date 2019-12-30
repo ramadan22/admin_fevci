@@ -1,6 +1,6 @@
 @if($errors->any())
-                @php echo "<pre>"; print_r($errors->all()); echo "</pre>"; @endphp
-            @endif
+    @php (!empty($errors->all())) ? $messageError = $errors->all() : ""; @endphp
+@endif
 
 @extends("V_dashboard")
 
@@ -121,9 +121,6 @@
                                 @endforeach
                             </tbody>
                             </table>
-
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
                         </div>
                         </div>
 
@@ -157,7 +154,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th style="width: 40px"></th>
+                                {{-- <th style="width: 40px"></th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,13 +165,13 @@
                                         <td>{{ $row['name'] }}</td>
                                         <td>{{ $row['email'] }}</td>
                                         <td>{{ ($row['status'] == "0") ? "Super Admin" : "Admin"  }}</td>
-                                        <td>
+                                        {{-- <td>
                                             <a type="button" href="#" class="btn btn-info btn-sm form-edit-menu" data-toggle="modal" data-target="#users-modal" id="">
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
                                             </a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     @php $n++; @endphp
                                 @endforeach
@@ -199,9 +196,12 @@
                         <div class="card-body">
                             <table class="table table-hover">
                                 @foreach($privileges as $row)
+
+                                @php if(!empty($row['sub_menu'])){ echo "<pre>"; print_r($row['sub_menu']); echo "</pre>";} @endphp
+
                                 <tr>
                                     <td style="border: none; padding-left: 0px;" colspan="4"><b>
-                                        &nbsp;&nbsp;{{ ($row['id_sub_menu'] != "0") ? $row['name_sub_menu'] : $row['name_menu'] }}
+                                        &nbsp;&nbsp;{{ ($row['id_sub_menu'] != "0") ? $sub_menu[$row['id_sub_menu']][0] : $row['name_menu'] }}
                                     </b></td>
                                 </tr>
                             
@@ -278,7 +278,8 @@
                     </div>
                     <div class="form-group">
                         <label for="email1">Email Address</label>
-                        <input type="email" class="form-control" name="email" value="{{Request::old('email')}}" placeholder="Enter email address" required>
+                        <input type="email" class="form-control" name="email" value="{{ Request::old('email') }}" placeholder="Enter email address" required>
+                        <p style="font-size: 12px; color: red;">{{ @$messageError[0] }}</p>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -287,6 +288,7 @@
                     <div class="form-group">
                         <label for="password-confirmation">Confirm Password</label>
                         <input type="password" class="form-control" name="password_confirmation" placeholder="Enter confirm password" required>
+                        <p style="font-size: 12px; color: red;">{{ @$messageError[1] }}</p>
                     </div>
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center">
@@ -1090,6 +1092,17 @@
         ]
     
         $(document).ready(function(){
+
+            @if(!empty($messageError) && $messageError != "")
+                $("#users-modal").modal('show');
+            @endif
+
+            $(".form-edit-menu").click(function(){
+                $("#users-modal p").empty();
+                $("#users-modal input[name='name']").val("");
+                $("#users-modal input[name='email']").val("");
+            });
+
             $(".form-edit-menu").click(function(){
                 var id = $(this).attr('id');
                 var data = id.split(",");

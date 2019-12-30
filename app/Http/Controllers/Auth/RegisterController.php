@@ -82,7 +82,5 @@ class RegisterController extends Controller
         $createUser = new CreatePrivilegesController;
 
         return $createUser->createUserPrivileges($id_user);
-
-        die();
     }
 }

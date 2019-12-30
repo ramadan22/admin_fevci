@@ -28,7 +28,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/menuAndPrivileges.php"
+            "app/Helpers/menuAndPrivileges.php",
+            "app/Helpers/globalData.php"
         ]
     },
     "autoload-dev": {

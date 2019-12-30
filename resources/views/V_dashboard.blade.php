@@ -1,9 +1,11 @@
+@php $globalData = globalData(); @endphp
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>{{ $globalData['title'] }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -770,10 +772,10 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>Copyright &copy; 2019 <a href="{{ url('/') }}">{{ $globalData['title'] }}</a>.</strong>
+    powered by <a href="http://www.codelabs.co.id/" target="_blank">Codelabs Indonesia</a>
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.1
+      {{-- <b>Version</b> 3.0.1 --}}
     </div>
   </footer>
 

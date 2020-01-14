@@ -30,7 +30,7 @@ class MerchandiseController extends Controller
         }
 
         if(!empty($request['ID'])){
-            $data->where("id_info", $request['ID']);
+            $data->where("id_merchandise", $request['ID']);
         }
 
         $data = $data->get();

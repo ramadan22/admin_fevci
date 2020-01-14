@@ -35,7 +35,9 @@ Route::get('logout', 'Auth\LoginController@logout');
         Route::get('manage-content/banner-header/update-use-default', 'modules\BannerHeaderController@updateUseDefault');
 
     // Manage-article
-    Route::get('manage-articles', 'modules\ArticleController@index');
+    // Route::get('manage-articles', 'modules\ArticleController@index');
+    Route::get('manage-articles', 'modules\ArticleController@index')->middleware('checkPrivileges');
+
     Route::post('manage-articles/add', 'modules\ArticleController@add');
     Route::post('manage-articles/form-edit', 'modules\ArticleController@formEdit');
     Route::post('manage-articles/update', 'modules\ArticleController@update');

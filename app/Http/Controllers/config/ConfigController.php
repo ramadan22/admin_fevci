@@ -17,12 +17,12 @@ class ConfigController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-        if(@Auth::user()->status != "0"){
-            return redirect("/");
-        }
     }
 
     public function index(){
+        if(@Auth::user()->status != "0"){
+            return redirect("/");
+        }
         
         $data['menu'] = menu_model::select("*")
         // ->join('sub_menu', 'menu.id_menu', '=', 'sub_menu.id_menu')
@@ -71,6 +71,10 @@ class ConfigController extends Controller
     }
 
     public function updateMenu(Request $request){
+        if(@Auth::user()->status != "0"){
+            return redirect("/");
+        }
+
         // echo $request['id_menu']."<br />";
         // echo $request['name']."<br />";
         // echo $request['icon']."<br />";

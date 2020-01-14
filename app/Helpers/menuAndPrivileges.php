@@ -6,7 +6,6 @@
 	if (!function_exists('menuAndPrivileges')) {
 		function menuAndPrivileges(){
             $menu = menu_model::select("*")
-            // ->join('sub_menu', 'menu.id_menu', '=', 'sub_menu.id_menu')
             ->where('menu.delete_status', '0')
             ->get();
             
@@ -21,13 +20,8 @@
                     
                     if(count($subMenu)>0){
                         $m = 0;
-                        // echo "<pre>";
-                            // print_r($subMenu[0]['name_sub_menu']);die();
-
-                        // foreach($subMenu as $dataSubMenu){
                             $menu[$n]['sub_menu'] = $subMenu;
                             $m++;
-                        // }
                     } else {
                         $menu[$n]['sub_menu'] = "";
                     }
@@ -35,9 +29,6 @@
                     $n++;
                 }
             }
-            // echo "<pre>";
-                // print_r($menu);die();
-
             return $menu;
         }
     }
@@ -45,7 +36,6 @@
     if (!function_exists('getUser')) {
         function getUser(){
             $user = Auth::user();
-
             return json_decode($user, true);
         }
     }

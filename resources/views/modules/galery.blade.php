@@ -46,7 +46,7 @@
                     <th style="width: 10px">#</th>
                     <th>Title</th>
                     <th>Alt Image</th>
-                    <th>Thumbnail</th>
+                    {{-- <th>Thumbnail</th> --}}
                     <th>Image</th>
                     <th></th>
                 </tr>
@@ -59,9 +59,9 @@
                                 <td>{{ $no }}.</td>
                                 <td>{{ $row['title_galery'] }}</td>
                                 <td>{{ $row['alt_galery'] }}</td>
-                                <td>
+                                {{-- <td>
                                     <img src="{{ Config::get('constants.urlAssetsImages') }}{{ $folderImage.'/thumbnail' }}/{{ $row['thumbnail_galery'] }}" style="width: 100px;" />
-                                </td>
+                                </td> --}}
                                 <td class="text-center">
                                     <img src="{{ Config::get('constants.urlAssetsImages') }}{{ $folderImage }}/image/{{ $row['image_galery'] }}" style="width: 100px;" />
                                 </td>

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\modules;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CheckPrivilegesController;
 use App\models\modules\ArticleModel;
 use Config;
 use Session;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -33,9 +35,6 @@ class ArticleController extends Controller
         ->get();
 
         $data['limit'] = $limit;
-
-        // echo "<pre>";
-        //     print_r($data['data']);die();
 
         return view("modules/article", $data);
     }

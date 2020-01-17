@@ -184,42 +184,46 @@
                         <div class="card card-primary card-outline">
                         <div class="card-header">
                             <h5 style="display: inline-block;" class="m-0">Privileges</h5>
-                            <select class="form-control" style="display: inline-block; width: auto; float: right !important;">
+                            <select class="form-control option-privileges" style="display: inline-block; width: auto; float: right !important;">
                                 @if(!empty($users))
-                                    @foreach($users as $row)
-                                        <option>{{ $row['name'] }}</option>
-                                    @endforeach
+                                @foreach($users as $row)
+                                <option value="{{ $row['id'] }}">{{ $row['name'] }}</option>
+                                @endforeach
                                 @endif
                             </select>
+                            <div class="loading-option-privileges" style="float: right; display: none; margin-top: 7px; margin-right: 7px;"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i></div>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                @foreach($privileges as $row)
+                        <div class="card-body response-aja-privileges">
+                            <form action="{{ url('configuration/update-privileges-user') }}" method="POST">
+                                <table class="table table-hover">
+                                    @foreach($privileges as $row)
 
-                                @php if(!empty($row['sub_menu'])){ echo "<pre>"; print_r($row['sub_menu']); echo "</pre>";} @endphp
+                                    @php if(!empty($row['sub_menu'])){ echo "<pre>"; print_r($row['sub_menu']); echo "</pre>";} @endphp
 
-                                <tr>
-                                    <td style="border: none; padding-left: 0px;" colspan="4"><b>
-                                        &nbsp;&nbsp;{{ ($row['id_sub_menu'] != "0") ? $sub_menu[$row['id_sub_menu']][0] : $row['name_menu'] }}
-                                    </b></td>
-                                </tr>
-                            
-                                <tr>
-                                <td style="width: 25%;">View</td>
-                                <td style="width: 25%;">Add</td>
-                                <td style="width: 25%;">Edit</td>
-                                <td style="width: 25%;">Delete</td>
-                                </tr>
+                                    <tr>
+                                        <td style="border: none; padding-left: 0px;" colspan="4"><b>
+                                            &nbsp;&nbsp;{{ ($row['id_sub_menu'] != "0") ? $sub_menu[$row['id_sub_menu']][0] : $row['name_menu'] }}
+                                        </b></td>
+                                    </tr>
+                                
+                                    <tr>
+                                    <td style="width: 25%;">View</td>
+                                    <td style="width: 25%;">Add</td>
+                                    <td style="width: 25%;">Edit</td>
+                                    <td style="width: 25%;">Delete</td>
+                                    </tr>
 
-                                <tr>
-                                    <td style="border: none;"><input type="checkbox" {{ ($row['view_action'] == "1") ? "checked" : "" }} /></td>
-                                    <td style="border: none;"><input type="checkbox" {{ ($row['create_action'] == "1") ? "checked" : "" }} /></td>
-                                    <td style="border: none;"><input type="checkbox" {{ ($row['edit_action'] == "1") ? "checked" : "" }} /></td>
-                                    <td style="border: none;"><input type="checkbox" {{ ($row['delete_action'] == "1") ? "checked" : "" }} /></td>
-                                </tr>
-                                @endforeach
-                            </table>
+                                    <tr>
+                                        <td style="border: none;"><input name="view[]" type="checkbox" value="{{ $row['id_privileges'] }}-1" {{ ($row['view_action'] == "1") ? "checked" : "" }} /></td>
+                                        <td style="border: none;"><input name="create[]" type="checkbox" value="{{ $row['id_privileges'] }}-1" {{ ($row['create_action'] == "1") ? "checked" : "" }} /></td>
+                                        <td style="border: none;"><input name="edit[]" type="checkbox" value="{{ $row['id_privileges'] }}-1" {{ ($row['edit_action'] == "1") ? "checked" : "" }} /></td>
+                                        <td style="border: none;"><input name="delete[]" type="checkbox" value="{{ $row['id_privileges'] }}-1" {{ ($row['delete_action'] == "1") ? "checked" : "" }} /></td>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                                <button type="submit" class="btn btn-primary" style="float: right;">Update Data Privileges</button>
+                            </form>
                         </div>
                         </div>
                     @endif
@@ -1092,6 +1096,31 @@
         ]
     
         $(document).ready(function(){
+            $(".option-privileges").change(function(){
+                var id = $(this).val();
+                $(this).attr("disabled");
+                changePrivilegesUser(id);
+            });
+
+            function changePrivilegesUser(id) {
+                $.ajax({
+                    url: "{{ url('configuration/change-privileges-user') }}",
+                    type: "GET",
+                    // dataType: ,
+                    data: "id="+id,
+                    beforeSend: function(){
+                        $(".loading-option-privileges").css("display", "inline-block");
+                    },
+                    success: function(res){
+                        $(".loading-option-privileges").css("display", "none");
+                        $(".option-privileges").removeAttr("disabled");
+                        $(".response-aja-privileges").empty().append(res);
+                    },
+                    error: function(){
+                        changePrivilegesUser(id);
+                    }
+                });
+            }
 
             @if(!empty($messageError) && $messageError != "")
                 $("#users-modal").modal('show');

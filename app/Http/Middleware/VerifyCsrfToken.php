@@ -39,6 +39,7 @@ class VerifyCsrfToken extends Middleware
 
         '/register',
 
-        '/configuration/update-menu'
+        '/configuration/update-menu',
+        '/configuration/update-privileges-user'
     ];
 }

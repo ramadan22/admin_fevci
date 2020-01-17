@@ -88,4 +88,39 @@ class ConfigController extends Controller
         Session::flash('note', 'Success update data menu'); 
         return redirect()->back()->with(array('message' => '1'));
     }
+
+    public function changePrivilegesUser(Request $request){
+        $data['privileges'] = PrivilegesModel::select("*")
+        ->where('privileges.delete_status', '0')
+        ->where('privileges.id_user', $request['id'])
+        ->join('menu', 'menu.id_menu', '=', 'privileges.id_menu')
+        ->get();
+
+        if($data['privileges']){
+            foreach($data['privileges'] as $row){
+                $subMenu = json_decode(DB::table('sub_menu')->where('id_sub_menu', $row['id_sub_menu'])->get(), true);
+                
+                $i = 0;
+                // $i2 = 0;
+                if(!empty($subMenu)){
+                    
+                    // foreach($subMenu as $row2){
+                        $data['sub_menu'][$row['id_sub_menu']][$i] = $subMenu[0]['name_sub_menu'];
+
+                        $i++;
+                    // }
+                }
+
+                // $i++;
+            }
+        }
+
+        return view("config/ajaxChangePrivilegesUser", $data);
+    }
+
+    public function updatePrivilegesUser(Request $request){
+        foreach($request['view'] as $viewData){
+            echo $viewData."<br />";
+        }
+    }
 }
